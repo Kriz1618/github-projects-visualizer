@@ -51,6 +51,6 @@ Before run this command, add the homepage key in the package file with the respe
 * Login to heroku `heroku login`
 * Create a commit `git flow`
 * Create a new heroku project `heroku create github-projects-visualizer`
-* Deploy app in heroku `git push geroku master`
+* Deploy app in heroku `git push heroku master`
 
 Visualize app on [Heroku platform](https://github-projects-visualizer.herokuapp.com/)
