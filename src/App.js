@@ -1,27 +1,29 @@
-import { buildGhCredentials } from "./db";
-import { useEffect, useState, useCallback } from "react";
+import { buildGhCredentials } from './db';
+import { useEffect, useState, useCallback } from 'react';
 
-import githubQuery from "./Query";
-import RepoInfo from "./components/RepoInfo";
-import SearchBox from "./components/SearchBox";
-import NavButtons from "./components/NavButtons";
-import CredentialsBox from "./components/CredentialsBox";
+import githubQuery from './Query';
+import RepoInfo from './components/RepoInfo';
+import SearchBox from './components/SearchBox';
+import NavButtons from './components/NavButtons';
+import CredentialsBox from './components/CredentialsBox';
 
 function App() {
   const [ghCredentials, setGhCredentials] = useState(null);
   const [error, setError] = useState(false);
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState('');
+  const [ghUser, setGhUser] = useState('');
   const [repoList, setRepoList] = useState(null);
   const [pageCount, setPageCount] = useState(10);
-  const [queryString, setQueryString] = useState("");
+  const [queryString, setQueryString] = useState('');
+  const [orderBy, setOrderBy] = useState('updated-desc');
   const [totalCount, setTotalCount] = useState(null);
 
   const [startCursor, setStartCursor] = useState(null);
   const [endCursor, setEndCursor] = useState(null);
   const [hasPreviousPage, setHasPreviousPage] = useState(false);
   const [hasNextPage, setHasNextPage] = useState(true);
-  const [paginationKeyword, setPaginationKeyword] = useState("first");
-  const [paginationString, setPaginationString] = useState("");
+  const [paginationKeyword, setPaginationKeyword] = useState('first');
+  const [paginationString, setPaginationString] = useState('');
 
   const getCredentials = useCallback(() => {
     const credentials = localStorage.getItem('credentials');
@@ -37,15 +39,16 @@ function App() {
     localStorage.setItem('credentials', `${user}&${token}`);
     setError(false);
     setGhCredentials(credentials);
+    setGhUser(user);
   };
 
   const fetchData = useCallback(() => {
     const queryText = JSON.stringify(
-      githubQuery(pageCount, queryString, paginationKeyword, paginationString)
+      githubQuery(pageCount, queryString, paginationKeyword, paginationString, ghUser, orderBy)
     );
 
     fetch(ghCredentials?.baseURL, {
-      method: "POST",
+      method: 'POST',
       headers: ghCredentials?.headers,
       body: queryText,
     })
@@ -65,7 +68,7 @@ function App() {
         localStorage.removeItem('credentials');
         console.log(`Error => ${error.message}`);
       });
-  }, [ghCredentials, pageCount, queryString, paginationKeyword, paginationString]);
+  }, [ghCredentials, pageCount, queryString, paginationKeyword, paginationString, ghUser, orderBy]);
 
   useEffect(() => {
     getCredentials();
@@ -78,14 +81,14 @@ function App() {
   }, [fetchData, ghCredentials, error]);
 
   useEffect(() => {
-    setPaginationString("");
-  }, [queryString]);
+    setPaginationString('');
+  }, [queryString, orderBy]);
 
   if (!ghCredentials || error) {
     return (
-      <div className="App container mt-5">
+      <div className='App container mt-5'>
         {error && (
-          <div className="alert alert-danger">
+          <div className='alert alert-danger'>
             <strong>Error!</strong> Invalid Credentials!!
           </div>
         )}
@@ -95,21 +98,18 @@ function App() {
   }
 
   return (
-    <div className="App container-mt-5">
-      <h1 className="text-primary">
-        <i className="bi bi-diagram-2-fill"></i> Repos
+    <div className='App container-mt-5'>
+      <h1 className='text-primary'>
+        <i className='bi bi-diagram-2-fill'></i> Repos
       </h1>
       <p>Welcome <b>{userName}</b></p>
       <SearchBox
         totalCount={totalCount}
         pageCount={pageCount}
         queryString={queryString}
-        onTotalChange={(myNumber) => {
-          setPageCount(myNumber);
-        }}
-        onQueryChange={(myString) => {
-          setQueryString(myString);
-        }}
+        onTotalChange={(myNumber) => setPageCount(myNumber)}
+        onQueryChange={(myString) => setQueryString(myString)}
+        onOrderBy={(orderByString) => setOrderBy(orderByString)}
       />
       <NavButtons
         start={startCursor}
@@ -122,7 +122,7 @@ function App() {
         }}
       />
       {repoList && (
-        <ul className="list-group list-group-flush">
+        <ul className='list-group list-group-flush'>
           {repoList.map(({ node }) => (
             <RepoInfo repo={node} key={node.id} />
           ))}

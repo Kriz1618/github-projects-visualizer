@@ -1,4 +1,4 @@
-const githubQuery = (pageCount, queryString, paginationKeyword, paginationString) => {
+const githubQuery = (pageCount, queryString, paginationKeyword, paginationString, user, orderBy) => {
 
   return {
     query: `
@@ -7,7 +7,7 @@ const githubQuery = (pageCount, queryString, paginationKeyword, paginationString
         name
       }
       search(
-        query: "${queryString} user:Kriz1618 sort:updated.desc"
+        query: "${queryString} user:${user} sort:${orderBy}"
         type: REPOSITORY
         ${paginationKeyword}: ${pageCount}, ${paginationString}
       ) {
@@ -23,6 +23,8 @@ const githubQuery = (pageCount, queryString, paginationKeyword, paginationString
               licenseInfo {
                 spdxId  
               }
+              createdAt
+              updatedAt
             }
           }
         }

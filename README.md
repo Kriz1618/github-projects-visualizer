@@ -46,6 +46,8 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 
 Before run this command, add the homepage key in the package file with the respective repo url `"homepage": "https://github.com/Kriz1618/github-projects"`, then execute the `build command`, with this command the build folder will be pushed to the `gh-pages` and the app will be available in the [Link](https://kriz1618.github.io/github-projects/)
 
+### Online  GitHub GraphQL explorer
+[Link](https://docs.github.com/es/graphql/overview/explorer)
 #### Heroku
 * Install heroku cli `npm install heroku`
 * Login to heroku `heroku login`

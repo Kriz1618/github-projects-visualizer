@@ -1,7 +1,7 @@
 const NavButtons = ({ start, end, next, previous, onPage }) => {
 
     return (
-      <div className="d-flex justify-content-center my-2">
+      <div className="d-flex justify-content-center">
         {previous && (
           <button
             className="btn mx-1 btn-sm btn-primary bi bi-arrow-left"

@@ -39,13 +39,19 @@ const RepoInfo = ({ repo }) => {
     }
   }
   return (
-    <li className="list-group-item">
+    <li className="list-group-item" role='button'>
       <div className="d-flex justify-content-between align-items-center">
-        <div className="d-flex flex-column">
-          <a className="h5 mb-0 text-decoration-none" href={repo.url}>
+        <div className="d-flex flex-column w-25">
+          <a className="h5 mb-0 text-decoration-none" target='_blank' rel="noreferrer" href={repo.url}>
             {repo.name}
           </a>
           <p className="small">{repo.description}</p>
+        </div>
+        <div className="d-flex flex-column w-25">
+          <b>Created At </b>{new Date(repo.createdAt).toDateString()}
+        </div>
+        <div className="d-flex flex-column w-25">
+          <b>Updated At </b>{new Date(repo.updatedAt).toDateString()}
         </div>
         <div className="text-nowrap ms-3">
           {license}
