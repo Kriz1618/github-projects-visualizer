@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Kriz1618/github-projects-visualizer/static/css/main.e0ae789b.css",
-    "main.js": "/Kriz1618/github-projects-visualizer/static/js/main.2923c411.js",
-    "static/media/bootstrap-icons.woff?": "/Kriz1618/github-projects-visualizer/static/media/bootstrap-icons.7ff3ca6fa798de3f8ac2.woff",
-    "static/media/bootstrap-icons.woff2?": "/Kriz1618/github-projects-visualizer/static/media/bootstrap-icons.f2539a501be3a673de05.woff2",
-    "index.html": "/Kriz1618/github-projects-visualizer/index.html",
-    "main.e0ae789b.css.map": "/Kriz1618/github-projects-visualizer/static/css/main.e0ae789b.css.map",
-    "main.2923c411.js.map": "/Kriz1618/github-projects-visualizer/static/js/main.2923c411.js.map"
+    "main.css": "/github-projects-visualizer/static/css/main.81b2c5c6.css",
+    "main.js": "/github-projects-visualizer/static/js/main.2923c411.js",
+    "static/media/bootstrap-icons.woff?": "/github-projects-visualizer/static/media/bootstrap-icons.7ff3ca6fa798de3f8ac2.woff",
+    "static/media/bootstrap-icons.woff2?": "/github-projects-visualizer/static/media/bootstrap-icons.f2539a501be3a673de05.woff2",
+    "index.html": "/github-projects-visualizer/index.html",
+    "main.81b2c5c6.css.map": "/github-projects-visualizer/static/css/main.81b2c5c6.css.map",
+    "main.2923c411.js.map": "/github-projects-visualizer/static/js/main.2923c411.js.map"
   },
   "entrypoints": [
-    "static/css/main.e0ae789b.css",
+    "static/css/main.81b2c5c6.css",
     "static/js/main.2923c411.js"
   ]
 }
